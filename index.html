@@ -1,0 +1,164 @@
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <script src="http://membres-liglab.imag.fr/PPerso/membres/donsez/cours/exemplescourstechnoweb/js_securehash/md5.js"></script>
+    <script src="fieldDynamicConfiguration.js"></script>
+	
+	<script language="javascript">
+	function check()
+    {				
+		var message = document.getElementById("toid").value+"|"+document.getElementById("key").value+"|"+document.getElementById("random").value		
+		alert(message);
+		var hash = calcMD5(message);
+		alert(hash);
+
+		document.getElementById('checksum').value = hash;
+		//document.form1.action = "http://localhost:8080/merchant/api/"+hash;
+        
+		return true;
+	}
+
+
+	</script>
+	
+    <title>Transaction</title>
+</head>
+<body onload=init()>
+<center>
+
+    <form action="" method="POST" style="width:800px;height:auto;background-color:gray" onsubmit="return check();" name="form1" target="_blank">	
+	<input type="hidden" name="checksum" id="checksum" value="" /><select class="testcases" style="visibility:hidden"></select> 
+    
+        <table border="1" cellspacing="0" cellpadding="0" align="center" bordercolor="#E4D6C9">
+            <tr>
+                <td>
+                    <table width="800" border="0" cellspacing="0" cellpadding="0" align="center" bordercolor="#E4D6C9" bgcolor="#CCE0FF">
+                        <tr>
+                            <td width="32%" height="20">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td align="center" colspan=2>Sample API</td>
+                        </tr>
+                        <tr>
+                            <td >&nbsp;</td>
+                            <td >&nbsp;</td>
+                        </tr>
+						<tr>
+                            <td ><div align="right"><b><font face="Arial, Helvetica, sans-serif" size="2">Member ID
+                                 : </font></b></div></td>
+                            <td ><div align="left">						
+							<!--<input type="text" name="memberId" id="toid" value="10865"></div></td>	-->
+
+                            <select name="memberId" id="toid"></select>
+                            </div></td>	
+                            
+                        </tr>
+						<tr>
+                            <td ><div align="right"><b><font face="Arial, Helvetica, sans-serif" size="2">Key
+                                 : </font></b></div></td>
+                            <td ><div align="left"><input type="text" id="key" name="key"  value="aUJFBfu54GunFENVbrxNR32VG3ok8g1Y"><select  class="testcases" onchange="selectTestCase(this.name,this.value);"></select></div></td>
+                        </tr>
+                        <tr>
+                            <td ><div align="right"><b><font face="Arial, Helvetica, sans-serif" size="2">mode
+                                 : </font></b></div></td>
+                            <!--<td ><div align="left"><input type="text" name="mode"  value="CREATE"></div></td>-->
+                            <td ><div align="left"><select name="mode" value="CREATE"><option>CREATE</option><option>MODIFY</option><option>UPDATE</option></select></div></td>
+                        </tr>
+						<tr>
+                            <td ><div align="right"><b><font face="Arial, Helvetica, sans-serif" size="2">random
+                                 : </font></b></div></td>
+                            <td ><div align="left"><input type="text" id="random" name="random"  value="1230456970" onclick=setRandomValue()><select  class="testcases" onchange="selectTestCase(this.name,this.value);"></select></div></td>
+                        </tr>
+
+                        <tr>
+                            <td width="32%"> <div align="right"><b><font face="Arial, Helvetica, sans-serif" size="2">bankinfo_bic :</font></b></div></td>
+                            <td > <div align="left"><input type="text" name="MerchantApplicationForm.BankProfileVO.bankinfo_bic"  value="1234565"><select  class="testcases" onchange="selectTestCase(this.name,this.value);"></select>
+                                <font size="2"><font size="2"><font  face="Arial, Helvetica, sans-serif" size="1"></font></font></font>
+                        </div></td>
+                        </tr>
+                        <tr>
+                            <td width="32%"> <div align="right"><b><font face="Arial, Helvetica, sans-serif" size="2">bankinfo_bank_name
+                                :</font></b></div></td>
+                            <td > <div align="left"><input type="text" name="MerchantApplicationForm.BankProfileVO.bankinfo_bank_name"  value="kajal"><select  class="testcases" onchange="selectTestCase(this.name,this.value);"></select>
+                                <font size="2"><font  face="Arial, Helvetica, sans-serif" size="1"></font></font>
+                        </div></td>
+                        </tr>
+
+			            <tr>
+                            <td><div align="right"><b><font face="Arial, Helvetica, sans-serif" size="2">bankinfo_bankaddress :</font></b></div></td>
+                            <td > <div align="left"><input type="text" name="MerchantApplicationForm.BankProfileVO.bankinfo_bankaddress"  value="malad"><select  class="testcases" onchange="selectTestCase(this.name,this.value);"></select></div>
+
+                        </tr>
+
+                        <tr>
+                            <td width="32%"> <div align="right"><b><font face="Arial, Helvetica, sans-serif" size="2">bankinfo_bankphonenumber
+                                :</font></b></div></td>
+                            <td > <div align="left"><input type="text" name="MerchantApplicationForm.BankProfileVO.bankinfo_bankphonenumber"  value="1234667899"><select class="testcases" onchange="selectTestCase(this.name,this.value);"></select>
+                                <font size="2"><font  face="Arial, Helvetica, sans-serif" size="1"></font></font>
+                                </div></td>
+                        </tr>
+                        
+                        <tr>
+                            <td><div align="right"><b><font face="Arial, Helvetica, sans-serif" size="2">bankinfo_accountholder :</font></b></div></td>
+                            <td > <div align="left"><input type="text" name="MerchantApplicationForm.BankProfileVO.bankinfo_accountholder"  value="NAMDEV"><select  class="testcases" onchange="selectTestCase(this.name,this.value);"></select></div>
+
+                        </tr>
+                        <tr>
+                            <td width="32%"> <div align="right"><b><font face="Arial, Helvetica, sans-serif" size="2">bankinfo_IBAN_number
+                                :</font></b></div></td>
+                            <td > <div align="left"><input type="text" name="MerchantApplicationForm.BankProfileVO.bankinfo_IBAN_number"  value="456799"><select  class="testcases" onchange="selectTestCase(this.name,this.value);"></select></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><div align="right"><b><font face="Arial, Helvetica, sans-serif" size="2">salesvolume_lastmonth
+                                :</font></b></div></td>
+                            <td > <div align="left"><input type="text" name="MerchantApplicationForm.BankProfileVO.salesvolume_lastmonth"  value="100"><select name=key class="testcases" onchange="selectTestCase(this.name,this.value);"></select></div>
+
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td width="32%"> <div align="right"><b><font face="Arial, Helvetica, sans-serif" size="2">salesvolume_2monthsago :</font></b></div></td>
+                            <td >  <div align="left"><input type="text" name="MerchantApplicationForm.BankProfileVO.salesvolume_2monthsago"  value="1000"><select  class="testcases" onchange="selectTestCase(this.name,this.value);"></select>
+                                <font size="2"><font color="#CC0000" face="Arial, Helvetica, sans-serif" size="1"></font></font></div></td>
+                        </tr>
+                        <tr>
+                            <td width="32%"> <div align="right"><b><font face="Arial, Helvetica, sans-serif" size="2">salesvolume_3monthsago
+                                :</font></b></div></td>
+                            <td >  <div align="left"><input type="text" name="MerchantApplicationForm.BankProfileVO.salesvolume_3monthsago"  value="1000"><select  class="testcases" onchange="selectTestCase(this.name,this.value);"></select>
+                                <font size="2"><font color="#CC0000" face="Arial, Helvetica, sans-serif" size="1"></font></font></div></td>
+                        </tr>
+					
+                        <tr>
+                            <td width="32%"> <div align="right"><b><font face="Arial, Helvetica, sans-serif" size="2">salesvolume_4monthsago
+                                :</font></b></div></td>
+                            <td>  <div align="left"><input type="text" name="customer.telnocc" size="5" value="091"><select name=key class="testcases" onchange="selectTestCase(this.name,this.value);" style="display:none;"></select>
+                                -
+                                <input type="text" name="MerchantApplicationForm.BankProfileVO.salesvolume_4monthsago" value="1000" size="20"><select  class="testcases" onchange="selectTestCase(this.name,this.value);"></select> <font size="2"><font size="2"><font  face="Arial, Helvetica, sans-serif" size="1"></font></font></font></div>
+                            </td>
+                        </tr>
+
+						
+
+
+                        
+
+                        <tr>
+                            <td >&nbsp;</td>
+                            <td >&nbsp;</td>
+                        </tr>
+                    <tr>
+                        <td align="center" colspan="2"><input id="submit" type="Submit" value="PAY NOW" name="submit" ></td>
+                    </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+        
+    </form>
+
+</center>
+</body>
+
+<script src="fieldDynamicConfiguration.js"></script>
+</html>
